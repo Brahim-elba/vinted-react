@@ -6,23 +6,23 @@ const ArticleDetails = ({ data }) => {
         <div>
           <div>
             <p>MARQUE</p>
-            <p>{data.product_details[2].MARQUE}</p>
+            <p>{data.product_details[2].MARQUE.toUpperCase()}</p>
           </div>
           <div>
             <p>TAILLE</p>
-            <p>{data.product_details[3].TAILLE}</p>
+            <p>{data.product_details[3].TAILLE.toUpperCase()}</p>
           </div>
           <div>
             <p>ÉTAT</p>
-            <p>{data.product_details[0].ETAT}</p>
+            <p>{data.product_details[0].ETAT.toUpperCase()}</p>
           </div>
           <div>
             <p>COULEUR</p>
-            <p>{data.product_details[4].COULEUR}</p>
+            <p>{data.product_details[4].COULEUR.toUpperCase()}</p>
           </div>
           <div>
             <p>EMPLACEMENT</p>
-            <p>{data.product_details[1].EMPLACEMENT}</p>
+            <p>{data.product_details[1].EMPLACEMENT.toUpperCase()}</p>
           </div>
         </div>
       </div>

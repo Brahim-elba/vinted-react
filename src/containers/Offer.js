@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import ContentArticle from "../components/ContentOffer";
-import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,7 +18,6 @@ const Offer = () => {
         );
         setData(response.data);
         setIsLoading(false);
-        // console.log(response.data);
       } catch (error) {
         console.log(error.message);
       }
@@ -34,7 +32,6 @@ const Offer = () => {
     </div>
   ) : (
     <div className="offer-page">
-      <Header />
       <ContentArticle data={data} />
     </div>
   );

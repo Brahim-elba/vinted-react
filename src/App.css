@@ -43,13 +43,13 @@
 /* --- HEADER --- */
 /* -------------------- */
 
-.header-home {
+.header {
   height: 60px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #dfdfdf;
+  /* border-bottom: 1px solid #dfdfdf; */
   background-color: white;
   position: sticky;
   top: 0;
@@ -58,12 +58,12 @@
   padding: 0 2.5% 0 2.55%;
 }
 
-.header-home img {
+.header img {
   height: 40px;
   width: auto;
 }
 
-.header-home form {
+.header form {
   width: 35%;
   height: 40px;
   position: relative;
@@ -76,7 +76,7 @@
   color: grey;
 }
 
-.header-home input {
+.header input {
   color: grey;
   width: 100%;
   padding: 10px 10px 10px 40px;
@@ -86,28 +86,32 @@
   outline: none;
 }
 
-.header-home button {
+.header button {
   width: 130px;
   height: 30px;
   border-radius: 5px;
-  border: inherit;
+  border: none;
   font-size: 12px;
   cursor: pointer;
 }
 
-.header-home > div button {
+.header > div button {
   border: 1px solid #09aeb7;
   color: #09aeb7;
   background-color: #fff;
 }
 
-.header-home > div button:first-child {
+.header > div button:first-child {
   margin-right: 15px;
 }
 
-.header-home > button {
+.header > button {
   background-color: #09aeb7;
   color: white;
+}
+
+.header button:hover {
+  opacity: 0.8;
 }
 
 /* -------------------- */
@@ -115,7 +119,6 @@
 /* -------------------- */
 
 .hero-home {
-  /* width: 100%; */
   position: relative;
 }
 
@@ -156,6 +159,10 @@
   border-radius: 10px;
   box-shadow: 0 0 3px grey;
   cursor: pointer;
+}
+
+.hero-home > div button:hover {
+  opacity: 0.8;
 }
 
 .hero-home > div p:last-child {
@@ -379,4 +386,50 @@
 
 .article-details > button:hover {
   opacity: 0.8;
+}
+
+/* -------------------- */
+/* -------------------- */
+/* --- SIGNUP --- */
+/* -------------------- */
+/* -------------------- */
+
+.signup-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+}
+
+.bloc-signup-form {
+  width: 400px;
+}
+
+.bloc-signup-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* -------------------- */
+/* -------------------- */
+/* --- LOGIN --- */
+/* -------------------- */
+/* -------------------- */
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px);
+}
+
+.bloc-login-form {
+  width: 400px;
+}
+
+.bloc-login-form form {
+  display: flex;
+  flex-direction: column;
 }

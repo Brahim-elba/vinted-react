@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Content from "../components/Content";
 import axios from "axios";
@@ -17,7 +16,6 @@ function Home() {
         );
         setData(response.data);
         setIsLoading(false);
-        // console.log(data);
       } catch (error) {
         console.log(error.message);
       }
@@ -32,7 +30,6 @@ function Home() {
     </div>
   ) : (
     <div className="home-page">
-      <Header />
       <Hero />
       <Content data={data.offers} />
     </div>
