@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage = ({ setUser }) => {
   const [email, setEmail] = useState("");
@@ -14,31 +15,26 @@ const LoginPage = ({ setUser }) => {
     password: password,
   };
 
-  const submitLogin = (event) => {
+  const submitLogin = async (event) => {
     event.preventDefault();
 
-    // On crée une requête
-    // useEffect(() => {
-    // Création d'une fonction pour créer un compte
-    const logUser = async () => {
-      try {
-        // Réalisation de la requête post Axios en envoyant les données userInfos
-        const response = await axios.post(
-          "https://brahim-elba-vinted.herokuapp.com/user/login",
-          userInfos
-        );
-        // On récupère la réponse
-        // On crée une variable token avec le token récupéré et on le passe en paramètre de la fonction setUser
-        const token = response.data.token;
-        setUser(token);
-        // Revenir à la page d'accueil
-        history.push("/");
-      } catch (error) {
-        console.log(error.message);
+    // Création d'une fonction pour s'identifier
+    try {
+      // Réalisation de la requête post Axios en envoyant les données userInfos
+      const response = await axios.post(
+        "https://brahim-elba-vinted.herokuapp.com/user/login",
+        userInfos
+      );
+      // On récupère la réponse et le token contenu dans la réponse si il est présent
+      // On le passe en paramètre de la fonction setUser
+      if (response.data.token) {
+        setUser(response.data.token);
       }
-    };
-    logUser();
-    // });
+      // Revenir à la page d'accueil
+      history.push("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleEmail = (event) => {
@@ -66,10 +62,15 @@ const LoginPage = ({ setUser }) => {
             value={password}
             onChange={handlePassword}
           />
-
-          <input type="submit" value="Se connecter" />
+          <input
+            className="button-submit-login"
+            type="submit"
+            value="Se connecter"
+          />
         </form>
-        <p>Tu as déjà un compte ? Connecte-toi !</p>
+        <Link to={"/signup"}>
+          <button>Pas encore de compte ? Inscris-toi !</button>
+        </Link>
       </div>
     </div>
   );

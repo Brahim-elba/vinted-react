@@ -1,4 +1,5 @@
 import PicHero from "../img/img-hero.jpg";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -6,7 +7,9 @@ const Hero = () => {
       <img src={PicHero} alt="pic-hero" />
       <div className="bloc-hero">
         <p>Prêts à faire du tri dans vos placards ?</p>
-        <button>Commencer à vendre</button>
+        <Link to={"/signup"}>
+          <button>Commencer à vendre</button>
+        </Link>
         <p>Découvrir comment ça marche</p>
       </div>
     </div>

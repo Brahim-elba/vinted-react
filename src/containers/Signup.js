@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SignupPage = ({ setUser }) => {
   const [username, setUsername] = useState("");
@@ -8,48 +9,9 @@ const SignupPage = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [newsletterSubscription, setNewsletterSubscription] = useState(false);
-  //   const [dataUser, setDataUser] = useState(null);
 
   // history est un tableau
   const history = useHistory();
-
-  const userInfos = {
-    username: username,
-    email: email,
-    password: password,
-    phone: phone,
-    // checkNewsletter: newsletterSubscription,
-  };
-
-  const submitSignUp = (event) => {
-    event.preventDefault();
-
-    // On crée une requête
-    // useEffect(() => {
-    // Création d'une fonction pour créer un compte
-    const createAccount = async () => {
-      try {
-        // Réalisation de la requête post Axios en envoyant les données userInfos
-        const response = await axios.post(
-          "https://brahim-elba-vinted.herokuapp.com/user/signup",
-          userInfos
-        );
-        // On récupère la réponse
-        // setDataUser(response.data); // Asynchrone
-        console.log(response.data);
-        // alert("Merci pour votre formulaire");
-        // On crée une variable token avec le token récupéré et on le passe en paramètre de la fonction setUser
-        const token = response.data.token;
-        setUser(token);
-        // Revenir à la page d'accueil
-        history.push("/");
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    createAccount();
-    // }, [userInfos]);
-  };
 
   const handleUsername = (event) => {
     setUsername(event.target.value);
@@ -69,6 +31,36 @@ const SignupPage = ({ setUser }) => {
 
   const handleNewsletter = () => {
     setNewsletterSubscription(!newsletterSubscription);
+  };
+
+  const userInfos = {
+    username: username,
+    email: email,
+    password: password,
+    phone: phone,
+    checkNewsletter: newsletterSubscription,
+  };
+
+  const submitSignUp = async (event) => {
+    event.preventDefault();
+
+    // Création d'une fonction pour créer un compte
+    try {
+      // Réalisation de la requête post Axios en envoyant les données userInfos
+      const response = await axios.post(
+        "https://brahim-elba-vinted.herokuapp.com/user/signup",
+        userInfos
+      );
+      // On récupère la réponse et le token contenu dans la réponse si il est présent
+      // On le passe en paramètre de la fonction setUser
+      if (response.data.token) {
+        setUser(response.data.token);
+      }
+      // Revenir à la page d'accueil
+      history.push("/");
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
@@ -100,22 +92,28 @@ const SignupPage = ({ setUser }) => {
             value={phone}
             onChange={handlePhone}
           />
-          {/* <input
-            type="checkbox"
-            name="check-newsletter"
-            onChange={handleNewsletter}
-          />
-          <label htmlFor="check-newsletter">
+          <label>
+            <input
+              type="checkbox"
+              name="check-newsletter"
+              onChange={handleNewsletter}
+            />
             S'inscrire à notre newsletter
-          </label> */}
+          </label>
           <p>
             En m'inscrivant je confirme avoir lu et accepté les Termes et
             Conditions et Politique de confidentialité de Vinted. Je confirme
             avoir au moins 18 ans.
           </p>
-          <input type="submit" value="S'inscrire" />
+          <input
+            className="button-submit-signup"
+            type="submit"
+            value="S'inscrire"
+          />
         </form>
-        <p>Tu as déjà un compte ? Connecte-toi !</p>
+        <Link to={"/login"}>
+          <button>Tu as déjà un compte ? Connecte-toi !</button>
+        </Link>
       </div>
     </div>
   );

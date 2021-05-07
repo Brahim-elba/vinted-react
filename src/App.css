@@ -395,6 +395,8 @@
 /* -------------------- */
 
 .signup-page {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -403,12 +405,84 @@
 }
 
 .bloc-signup-form {
-  width: 400px;
+  width: 300px;
+  height: 450px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
 }
 
 .bloc-signup-form form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 85%;
+}
+
+.bloc-signup-form form > input,
+.bloc-signup-form form label,
+.bloc-signup-form form p {
+  height: 40px;
+  border: inherit;
+  outline: inherit;
+}
+
+.bloc-signup-form > p:first-child {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.bloc-signup-form form input:not(:last-child) {
+  font-size: 12px;
+  color: grey;
+  border-bottom: 1px solid #f7b4b4;
+}
+
+.bloc-signup-form form label {
+  font-size: 12px;
+  color: grey;
+  display: flex;
+  align-items: center;
+}
+
+.bloc-signup-form form label input {
+  margin-right: 10px;
+}
+
+.bloc-signup-form form > p {
+  color: grey;
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.button-submit-signup {
+  background-color: #09aeb7;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.button-submit-signup:hover {
+  opacity: 0.8;
+}
+
+.bloc-signup-form button {
+  font-weight: 400;
+  font-size: 12px;
+  color: #09aeb7;
+  cursor: pointer;
+  text-decoration: none;
+  border: initial;
+  background-color: inherit;
+  outline: none;
+}
+
+.bloc-signup-form button:hover {
+  text-decoration: underline;
 }
 
 /* -------------------- */
@@ -418,6 +492,8 @@
 /* -------------------- */
 
 .login-page {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -426,10 +502,65 @@
 }
 
 .bloc-login-form {
-  width: 400px;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bloc-login-form > p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
 }
 
 .bloc-login-form form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 70%;
+  width: 100%;
+}
+
+.bloc-login-form form > input {
+  height: 40px;
+  border: inherit;
+  outline: inherit;
+}
+
+.bloc-login-form form input:not(:last-child) {
+  font-size: 12px;
+  color: grey;
+  border-bottom: 1px solid #f7b4b4;
+}
+
+.button-submit-login {
+  background-color: #09aeb7;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.button-submit-login:hover {
+  opacity: 0.8;
+}
+
+.bloc-login-form button {
+  font-weight: 400;
+  font-size: 12px;
+  color: #09aeb7;
+  cursor: pointer;
+  text-decoration: none;
+  border: inherit;
+  background-color: inherit;
+  outline: none;
+}
+
+.bloc-login-form button:hover {
+  text-decoration: underline;
 }
