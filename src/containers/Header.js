@@ -57,7 +57,7 @@ const Header = ({
       <button className="sell-articles">Vends tes articles</button>
       <div className="bloc-switch-and-slider">
         <div>
-          Trier par :
+          Trier par prix :
           <SwitchButton
             statusSwitch={statusSwitch}
             setStatusSwitch={setStatusSwitch}
