@@ -17,6 +17,9 @@ import LoginPage from "./containers/Login";
 library.add(faSpinner, faHeart, faSearch);
 
 function App() {
+  const [valueRange, setValueRange] = useState([50, 130]);
+  const [statusSwitch, setStatusSwitch] = useState(true);
+  const [valueInputSearch, setValueInputSearch] = useState("");
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
 
   const setUser = (token) => {
@@ -32,7 +35,16 @@ function App() {
 
   return (
     <Router>
-      <Header userToken={userToken} setUser={setUser} />
+      <Header
+        userToken={userToken}
+        setUser={setUser}
+        valueRange={valueRange}
+        setValueRange={setValueRange}
+        statusSwitch={statusSwitch}
+        setStatusSwitch={setStatusSwitch}
+        valueInputSearch={valueInputSearch}
+        setValueInputSearch={setValueInputSearch}
+      />
       <Switch>
         <Route path="/signup">
           <SignupPage setUser={setUser} />
@@ -44,7 +56,11 @@ function App() {
           <Offer />
         </Route>
         <Route path="/">
-          <Home />
+          <Home
+            valueRange={valueRange}
+            statusSwitch={statusSwitch}
+            valueInputSearch={valueInputSearch}
+          />
         </Route>
       </Switch>
     </Router>

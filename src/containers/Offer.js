@@ -9,7 +9,6 @@ const Offer = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
-  console.log(id);
   useEffect(() => {
     const fetchData = async () => {
       try {
