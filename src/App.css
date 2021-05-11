@@ -108,7 +108,7 @@
   margin-right: 15px;
 }
 
-.header > button {
+.sell-articles-button {
   background-color: #09aeb7;
   color: white;
 }
@@ -421,7 +421,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 125px);
 }
 
 .bloc-signup-form {
@@ -518,7 +518,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 60px);
+  height: calc(100vh - 125px);
 }
 
 .bloc-login-form {
@@ -586,4 +586,24 @@
   text-decoration: underline;
 }
 
-/* SLIDER */
+/* -------------------- */
+/* -------------------- */
+/* --- PUBLISH PAGE --- */
+/* -------------------- */
+/* -------------------- */
+
+.publish-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 125px);
+}
+.form-publish {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+  width: 70%;
+  padding: 10px;
+  background-color: aqua;
+}

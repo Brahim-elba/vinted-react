@@ -1,21 +1,33 @@
 import "./App.css";
+
+// Tools
 import { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Cookies from "js-cookie";
+
+// Containers
 import Home from "./containers/Home";
 import Offer from "./containers/Offer";
 import Header from "./containers/Header";
 import SignupPage from "./containers/Signup";
+import LoginPage from "./containers/Login";
+import PublishPage from "./containers/Publish";
 
+// Assets
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faSpinner,
   faHeart,
   faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import LoginPage from "./containers/Login";
 library.add(faSpinner, faHeart, faSearch);
 
+// App
 function App() {
   const [valueRange, setValueRange] = useState([50, 130]);
   const [statusSwitch, setStatusSwitch] = useState(true);
@@ -26,7 +38,7 @@ function App() {
     if (token) {
       Cookies.set("userToken", token, { expires: 1 });
       setUserToken(token);
-      console.log(token);
+      // console.log(token);
     } else {
       Cookies.remove("userToken");
       setUserToken(null);
@@ -54,6 +66,13 @@ function App() {
         </Route>
         <Route path="/offer/:id">
           <Offer />
+        </Route>
+        <Route path="/publish">
+          {userToken ? (
+            <PublishPage userToken={userToken} />
+          ) : (
+            <Redirect to="/login" />
+          )}
         </Route>
         <Route path="/">
           <Home

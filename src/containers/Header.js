@@ -53,8 +53,10 @@ const Header = ({
           </Link>
         </div>
       )}
+      <Link to={"/publish"}>
+        <button className="sell-articles-button">Vends tes articles</button>
+      </Link>
 
-      <button className="sell-articles">Vends tes articles</button>
       <div className="bloc-switch-and-slider">
         <div>
           Trier par prix :
