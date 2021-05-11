@@ -1,10 +1,13 @@
+// Tools
 import { useParams } from "react-router-dom";
-import ContentArticle from "../components/ContentOffer";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Offer = () => {
+// Components
+import ContentOffer from "../components/ContentOffer";
+
+const Offer = ({ userToken }) => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -31,7 +34,7 @@ const Offer = () => {
     </div>
   ) : (
     <div className="offer-page">
-      <ContentArticle data={data} />
+      <ContentOffer data={data} userToken={userToken} />
     </div>
   );
 };

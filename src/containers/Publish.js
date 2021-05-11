@@ -1,3 +1,4 @@
+// Tools
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -18,6 +19,7 @@ const PublishPage = ({ userToken }) => {
   const [productColor, setProductColor] = useState("");
   const [productData, setProductData] = useState();
   const [isSubmit, setIsSubmit] = useState(false);
+  const [errorMessagePublish, setErrorMessagePublish] = useState();
 
   // Fonctions handle
   const handlePicture = (event) => {
@@ -71,6 +73,8 @@ const PublishPage = ({ userToken }) => {
     formData.append("size", productSize);
     formData.append("color", productColor);
 
+    console.log(formData);
+
     try {
       const response = await axios.post(
         "https://brahim-elba-vinted.herokuapp.com/offer/publish",
@@ -85,6 +89,11 @@ const PublishPage = ({ userToken }) => {
       setIsSubmit(true);
       history.push("/");
     } catch (error) {
+      if (error.response.status === 401) {
+        setErrorMessagePublish(
+          "Vous devez disposer d'un compte valide et être connecté pour publier une annonce."
+        );
+      }
       console.log(error.message);
     }
   };
@@ -94,86 +103,118 @@ const PublishPage = ({ userToken }) => {
   ) : (
     <div className="publish-page">
       <form className="form-publish" onSubmit={handleSubmit}>
-        <div>
-          <p>Vends ton article</p>
-          <input type="file" name="picture" onChange={handlePicture} />
+        <p>Vends ton article</p>
+        <div className="bloc-upload-picture">
+          <label htmlFor="picture-product">
+            Ajoute une photo
+            <input
+              className="input-picture"
+              type="file"
+              name="picture"
+              id="picture-product"
+              onChange={handlePicture}
+            />
+          </label>
+          {productPicture && (
+            <img src={URL.createObjectURL(productPicture)} alt="upload-pic" />
+          )}
         </div>
         <div>
-          <p>Titre</p>
-          <input
-            type="text"
-            name="title"
-            placeholder="Exemple : Chemise blanche Zara"
-            value={productTitle}
-            onChange={handleTitle}
-          />
-          <p>Décris ton article</p>
-          <textarea
-            name="description"
-            placeholder="Exemple : Taille normalement"
-            value={productDescription}
-            onChange={handleDescription}
-          />
-        </div>
-        <div>
-          <p>Marque</p>
-          <input
-            type="text"
-            name="brand"
-            placeholder="Exemple : Zara"
-            value={productBrand}
-            onChange={handleBrand}
-          />
-          <p>Taille</p>
-          <input
-            type="text"
-            name="size"
-            placeholder="Exemple : L / 40 / 12"
-            value={productSize}
-            onChange={handleSize}
-          />
-          <p>Couleur</p>
-          <input
-            type="text"
-            name="color"
-            placeholder="Exemple : Blanc"
-            value={productColor}
-            onChange={handleColor}
-          />
-          <p>État</p>
-          <input
-            type="text"
-            name="condition"
-            placeholder="Exemple : Neuf avec étiquette"
-            value={productCondition}
-            onChange={handleCondition}
-          />
-          <p>Lieu</p>
-          <input
-            type="text"
-            name="city"
-            placeholder="Exemple : Paris"
-            value={productCity}
-            onChange={handleCity}
-          />
-        </div>
-        <div>
-          <p>Prix</p>
           <div>
+            <p>Titre</p>
+            <input
+              type="text"
+              name="title"
+              placeholder="Exemple : Chemise blanche Zara"
+              value={productTitle}
+              onChange={handleTitle}
+            />
+          </div>
+          <div>
+            <p>Décris ton article</p>
+            <textarea
+              name="description"
+              placeholder="Exemple : Taille normalement"
+              value={productDescription}
+              onChange={handleDescription}
+            />
+          </div>
+        </div>
+        <div>
+          <div>
+            <p>Marque</p>
+            <input
+              type="text"
+              name="brand"
+              placeholder="Exemple : Zara"
+              value={productBrand}
+              onChange={handleBrand}
+            />
+          </div>
+          <div>
+            <p>Taille</p>
+            <input
+              type="text"
+              name="size"
+              placeholder="Exemple : L / 40 / 12"
+              value={productSize}
+              onChange={handleSize}
+            />
+          </div>
+          <div>
+            <p>Couleur</p>
+            <input
+              type="text"
+              name="color"
+              placeholder="Exemple : Blanc"
+              value={productColor}
+              onChange={handleColor}
+            />
+          </div>
+          <div>
+            <p>État</p>
+            <input
+              type="text"
+              name="condition"
+              placeholder="Exemple : Neuf avec étiquette"
+              value={productCondition}
+              onChange={handleCondition}
+            />
+          </div>
+          <div>
+            <p>Lieu</p>
+            <input
+              type="text"
+              name="city"
+              placeholder="Exemple : Paris"
+              value={productCity}
+              onChange={handleCity}
+            />
+          </div>
+        </div>
+        <div className="bloc-price-publish">
+          <div>
+            <p>Prix</p>
             <input
               type="text"
               name="price"
               value={productPrice}
               onChange={handlePrice}
             />
-            <label htmlFor="check-echange">
-              <input type="checkbox" id="check-echange" />
-              <p>Je suis intéressé(e) par les échanges</p>
-            </label>
           </div>
+          <label htmlFor="check-echange">
+            <input type="checkbox" id="check-echange" />
+            <p>Je suis intéressé(e) par les échanges</p>
+          </label>
         </div>
-
-        <input type="submit" value="Publier" />
+        {errorMessagePublish && (
+          <p className="error-message-publish">{errorMessagePublish}</p>
+        )}
+        <input
+          className="button-submit-publish"
+          type="submit"
+          value="Publier"
+        />
       </form>
     </div>
   );

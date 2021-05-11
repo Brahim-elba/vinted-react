@@ -1,4 +1,6 @@
-const ArticleDetails = ({ data }) => {
+import { Link } from "react-router-dom";
+
+const ArticleDetails = ({ data, userToken }) => {
   return (
     <div className="article-details">
       <div className="article-details-top">
@@ -34,7 +36,9 @@ const ArticleDetails = ({ data }) => {
           <p>{data.owner.account.username}</p>
         </div>
       </div>
-      <button>Acheter</button>
+      <Link className="article-details-button" to={`/payment/${data._id}`}>
+        <button>Acheter</button>
+      </Link>
     </div>
   );
 };

@@ -1,10 +1,13 @@
-import Hero from "../components/Hero";
-import Content from "../components/Content";
+// Tools
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Home = ({ valueRange, statusSwitch, valueInputSearch }) => {
+// Components
+import Hero from "../components/Hero";
+import Content from "../components/Content";
+
+const Home = ({ valueRange, statusSwitch, valueInputSearch, userToken }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +38,7 @@ const Home = ({ valueRange, statusSwitch, valueInputSearch }) => {
     };
 
     fetchData();
-  }, [valueRange, urlRequestOffers]);
+  }, [valueRange, urlRequestOffers, valueInputSearch]);
 
   return isLoading ? (
     <div className="spin-loading">
@@ -43,7 +46,7 @@ const Home = ({ valueRange, statusSwitch, valueInputSearch }) => {
     </div>
   ) : (
     <div className="home-page">
-      <Hero />
+      <Hero userToken={userToken} />
       <Content data={data.offers} />
     </div>
   );

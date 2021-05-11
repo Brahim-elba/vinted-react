@@ -1,3 +1,4 @@
+// Tools
 import { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
@@ -6,6 +7,7 @@ import { Link } from "react-router-dom";
 const LoginPage = ({ setUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessageLogin, setErrorMessageLogin] = useState();
 
   // history est un tableau
   const history = useHistory();
@@ -28,11 +30,16 @@ const LoginPage = ({ setUser }) => {
       // On récupère la réponse et le token contenu dans la réponse si il est présent
       // On le passe en paramètre de la fonction setUser
       if (response.data.token) {
-        setUser(response.data.token);
+        setUser(response.data.token, response.data.id);
+        // Revenir à la page d'accueil
+        history.push("/");
       }
-      // Revenir à la page d'accueil
-      history.push("/");
     } catch (error) {
+      if (error.response.status === 400) {
+        setErrorMessageLogin(
+          "La combinaison email/mot de passe est incorrecte"
+        );
+      }
       console.log(error.message);
     }
   };
@@ -62,6 +69,9 @@ const LoginPage = ({ setUser }) => {
             value={password}
             onChange={handlePassword}
           />
+          {errorMessageLogin && (
+            <p className="error-message-login">{errorMessageLogin}</p>
+          )}
           <input
             className="button-submit-login"
             type="submit"

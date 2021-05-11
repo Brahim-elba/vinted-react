@@ -12,7 +12,7 @@
 
 .spin-loading {
   color: #09aeb7;
-  height: 100vh;
+  height: calc(100vh - 125px);
   width: 100vw;
   font-size: 100px;
   display: flex;
@@ -283,7 +283,7 @@
 }
 
 .content-offer {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 125px);
   background-color: #ebedee;
   display: flex;
   align-items: center;
@@ -389,8 +389,14 @@
 
 /* BUTTON */
 
-.article-details > button {
-  height: 8%;
+.article-details-button {
+  height: 10%;
+  width: 100%;
+  text-decoration: none;
+}
+
+.article-details-button button {
+  height: 100%;
   width: 100%;
   background-color: #09aeb7;
   color: white;
@@ -404,7 +410,7 @@
   box-shadow: 0 0 5px grey;
 }
 
-.article-details > button:hover {
+.article-details-button button:hover {
   opacity: 0.8;
 }
 
@@ -505,6 +511,13 @@
   text-decoration: underline;
 }
 
+.error-message-signup {
+  color: #e04b4b;
+  font-size: 12px;
+  text-align: justify;
+  margin-top: 10px;
+}
+
 /* -------------------- */
 /* -------------------- */
 /* --- LOGIN --- */
@@ -586,6 +599,13 @@
   text-decoration: underline;
 }
 
+.error-message-login {
+  color: #e04b4b;
+  font-size: 12px;
+  text-align: justify;
+  margin-top: 10px;
+}
+
 /* -------------------- */
 /* -------------------- */
 /* --- PUBLISH PAGE --- */
@@ -594,16 +614,255 @@
 
 .publish-page {
   display: flex;
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 125px);
 }
 .form-publish {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 80%;
+  margin-top: 30px;
   width: 70%;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: calc(10% + 20px);
+  padding-right: calc(10% + 20px);
+  background-color: white;
+  border-radius: 5px;
+}
+
+.form-publish > p:first-child {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.bloc-upload-picture {
   padding: 10px;
-  background-color: aqua;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: #ebedee;
+  margin-bottom: 20px;
+}
+
+.bloc-upload-picture img {
+  margin-left: 50px;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  box-shadow: 0 0 5px grey;
+}
+
+.bloc-upload-picture label {
+  cursor: pointer;
+  width: 30%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 5px grey;
+  background-color: #fff;
+  color: grey;
+}
+
+.bloc-upload-picture label:hover {
+  background-color: #09aeb7;
+  color: white;
+}
+
+.input-picture {
+  display: none;
+}
+
+.form-publish > div {
+  background-color: #ebedee;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-publish > div > div {
+  display: flex;
+  align-items: center;
+}
+
+.form-publish > div > div p,
+.form-publish > div > div input,
+.form-publish > div > div textarea {
+  width: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: inherit;
+  outline: none;
+}
+
+.form-publish > div > div input,
+.form-publish > div > div textarea {
+  padding: 10px;
+  box-shadow: 0 0 5px grey;
+  border-radius: 5px;
+}
+
+.bloc-price-publish label {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.bloc-price-publish label input {
+  margin-right: 15px;
+}
+
+.button-submit-publish {
+  height: 50px;
+  width: 300px;
+  align-self: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #09aeb7;
+  color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  border: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px grey;
+  cursor: pointer;
+}
+
+.button-submit-publish:hover {
+  opacity: 0.8;
+}
+
+.error-message-publish {
+  color: #e04b4b;
+  font-size: 12px;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+/* -------------------- */
+/* -------------------- */
+/* --- PAYMENT PAGE --- */
+/* -------------------- */
+/* -------------------- */
+
+.payment-page {
+  font-family: "Montserrat", sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 125px);
+  background-color: #ebedee;
+}
+
+.payment-page-form {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  height: 80%;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0 0 10px grey;
+}
+
+.payment-form-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 37.5%;
+  border-bottom: 1px solid #ebedee;
+  padding-bottom: 40px;
+}
+
+.payment-form-top > p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: grey;
+}
+
+.payment-form-top > div {
+  display: flex;
+  justify-content: space-between;
+  /* height: 20%; */
+}
+
+.payment-form-middle {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 37.5%;
+  border-bottom: 1px solid #ebedee;
+}
+
+.payment-form-middle > div {
+  display: flex;
+  justify-content: space-between;
+  /* height: 50%; */
+}
+
+.payment-form-middle > p {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: justify;
+  color: grey;
+}
+
+.payment-form-bottom {
+  height: 25%;
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-element-payment {
+  box-shadow: 0 0 3px grey;
+  height: 35px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.payment-form-bottom button {
+  width: 100%;
+  margin-top: 15px;
+  height: 45px;
+  border: inherit;
+  outline: none;
+  background-color: #01c06d;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  box-shadow: 0 0 3px grey;
+  cursor: pointer;
+}
+
+.payment-form-bottom button:hover {
+  opacity: 0.8;
+}
+
+.payment-ok {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+  background-color: #eb5895;
+  color: white;
+  font-weight: 600;
+  border-radius: 10px;
 }

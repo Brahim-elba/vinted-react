@@ -17,6 +17,7 @@ import Header from "./containers/Header";
 import SignupPage from "./containers/Signup";
 import LoginPage from "./containers/Login";
 import PublishPage from "./containers/Publish";
+import Payment from "./containers/Payment";
 
 // Assets
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -33,15 +34,19 @@ function App() {
   const [statusSwitch, setStatusSwitch] = useState(true);
   const [valueInputSearch, setValueInputSearch] = useState("");
   const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+  const [userId, setUserId] = useState(Cookies.get("userId") || null);
+  // const [userData, setUserData] = useState();
 
-  const setUser = (token) => {
+  const setUser = (token, userId) => {
     if (token) {
       Cookies.set("userToken", token, { expires: 1 });
+      Cookies.set("userId", userId, { expires: 1 });
       setUserToken(token);
-      // console.log(token);
+      setUserId(userId);
     } else {
       Cookies.remove("userToken");
       setUserToken(null);
+      setUserId(null);
     }
   };
 
@@ -65,7 +70,7 @@ function App() {
           <LoginPage setUser={setUser} />
         </Route>
         <Route path="/offer/:id">
-          <Offer />
+          <Offer userToken={userToken} />
         </Route>
         <Route path="/publish">
           {userToken ? (
@@ -74,11 +79,15 @@ function App() {
             <Redirect to="/login" />
           )}
         </Route>
+        <Route path="/payment/:id">
+          {userToken ? <Payment userId={userId} /> : <Redirect to="/login" />}
+        </Route>
         <Route path="/">
           <Home
             valueRange={valueRange}
             statusSwitch={statusSwitch}
             valueInputSearch={valueInputSearch}
+            userToken={userToken}
           />
         </Route>
       </Switch>

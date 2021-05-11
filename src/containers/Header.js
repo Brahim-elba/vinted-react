@@ -1,6 +1,9 @@
+// Tools
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LogoVinted from "../img/vinted_logo.png";
 import { Link } from "react-router-dom";
+
+// Components
 import SliderRange from "../components/Slider";
 import SwitchButton from "../components/Switch";
 
