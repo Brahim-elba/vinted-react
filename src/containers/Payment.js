@@ -30,7 +30,6 @@ const Payment = ({ userId }) => {
           `https://brahim-elba-vinted.herokuapp.com/offer/${id}`
         );
         setDataArticlePayment(response.data);
-        console.log(dataArticlePayment);
         setIsLoading(false);
       } catch (error) {
         console.log(error.message);
@@ -38,7 +37,7 @@ const Payment = ({ userId }) => {
     };
 
     fetchData();
-  }, [id, dataArticlePayment]);
+  }, [id]);
 
   return isLoading ? (
     <div className="spin-loading">
